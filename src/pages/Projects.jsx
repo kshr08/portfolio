@@ -338,17 +338,20 @@ export default function Projects() {
           display: "flex",
           alignItems: "flex-end",
           justifyContent: "center",
-          height: 560,
+          height: 580,
         }}
       >
         <CardSwap
-          width={500}
-          height={340}
+          width={700}
+          height={490}
           cardDistance={20}
           verticalDistance={36}
           delay={3200}
+          z-index={3}
           pauseOnHover
-          onFrontChange={(refIdx) => setActiveIdx(refIdx)}
+          onFrontChange={(refIdx) => {
+            setTimeout(() => setActiveIdx(refIdx), 480);
+          }}
         >
           {PROJECTS.map((p, i) => (
             <Card

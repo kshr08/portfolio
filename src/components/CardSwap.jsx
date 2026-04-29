@@ -103,8 +103,8 @@ const CardSwap = ({
             const tl = gsap.timeline({
                 onComplete: () => {
                     order.current = [...rest, front];
-                    onFrontChangeRef.current?.(order.current[0]);
                     animating.current = false;
+                    onFrontChangeRef.current?.(order.current[0]);
                 },
             });
             tlRef.current = tl;
