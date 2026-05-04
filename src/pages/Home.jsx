@@ -11,42 +11,37 @@ const ROLES = [
 const TAGS = [
   {
     label: "● Full Stack Dev",
-    c: "#a78bfa",
-    bg: "rgba(124,58,237,0.12)",
-    border: "rgba(124,58,237,0.25)",
+    c: "#5b21b6",
+    bg: "rgba(124,58,237,0.08)",
+    border: "rgba(124,58,237,0.2)",
   },
   {
     label: "● Java + React",
-    c: "#f0abca",
-    bg: "rgba(240,171,202,0.08)",
-    border: "rgba(240,171,202,0.2)",
+    c: "#9d174d",
+    bg: "rgba(190,24,93,0.06)",
+    border: "rgba(190,24,93,0.18)",
   },
   {
     label: "● AI Integrations",
-    c: "#c4b5fd",
-    bg: "rgba(196,181,253,0.08)",
-    border: "rgba(196,181,253,0.2)",
+    c: "#6d28d9",
+    bg: "rgba(109,40,217,0.06)",
+    border: "rgba(109,40,217,0.18)",
   },
   {
     label: "@ MIT CSN '26",
-    c: "rgba(232,228,240,0.4)",
-    bg: "rgba(255,255,255,0.04)",
-    border: "rgba(255,255,255,0.08)",
+    c: "rgba(15,14,17,0.45)",
+    bg: "rgba(0,0,0,0.03)",
+    border: "rgba(0,0,0,0.08)",
   },
 ];
 
-
-// letter scramble on mount
 function useScramble(ref, target, delay = 0) {
   useEffect(() => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     let iter = 0;
     const t = setTimeout(() => {
       const iv = setInterval(() => {
-        if (!ref.current) {
-          clearInterval(iv);
-          return;
-        }
+        if (!ref.current) { clearInterval(iv); return; }
         ref.current.textContent = target
           .split("")
           .map((c, i) => {
@@ -65,8 +60,6 @@ function useScramble(ref, target, delay = 0) {
     return () => clearTimeout(t);
   }, []);
 }
-
-
 
 export default function Home() {
   const nav = useNavigate();
@@ -101,12 +94,11 @@ export default function Home() {
             fontSize: 10,
             letterSpacing: "3px",
             textTransform: "uppercase",
-            color: "rgba(167,139,250,0.45)",
+            color: "rgba(109,40,217,0.5)",
             marginBottom: 20,
           }}
         >
-          Full Stack Developer &nbsp;·&nbsp; MIT CSN '26 &nbsp;·&nbsp; Nashik,
-          India
+          Full Stack Developer &nbsp;·&nbsp; MIT CSN '26 &nbsp;·&nbsp; Nashik, India
         </p>
 
         {/* name */}
@@ -132,32 +124,25 @@ export default function Home() {
               zIndex: 2,
             }}
           >
-            {/* Shravani */}
             <span
               ref={rFirst}
               style={{
-                // animation: "subtleFloat 4s ease-in-out infinite",
                 fontWeight: 300,
                 fontStyle: "italic",
-                color: "var(--text)",
+                color: "#0f0e11",
                 opacity: 0.9,
-                textShadow: "0 0 30px rgba(167,139,250,0.18)",
               }}
             >
               Shravani
             </span>
-
-            {/* Khindre */}
             <span
               ref={rLast}
               style={{
-                // animation: "subtleFloat 5s ease-in-out infinite",
                 fontWeight: 700,
-                background:
-                  "linear-gradient(118deg,#7c3aed 0%,#a78bfa 45%,#f0abca 100%)",
+                background: "linear-gradient(118deg,#7c3aed 0%,#a78bfa 45%,#be185d 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                filter: "drop-shadow(0 0 25px rgba(124,58,237,0.25))",
+                filter: "drop-shadow(0 0 20px rgba(124,58,237,0.15))",
               }}
             >
               Khindre
@@ -166,14 +151,7 @@ export default function Home() {
         </div>
 
         {/* role chips */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 8,
-            marginBottom: 22,
-          }}
-        >
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 22 }}>
           {TAGS.map((t) => (
             <span
               key={t.label}
@@ -198,24 +176,23 @@ export default function Home() {
         <p
           style={{
             fontSize: 15,
-            // color: "rgba(232,228,240,0.5)",
+            color: "rgba(15,14,17,0.65)",
             maxWidth: 480,
             lineHeight: 1.75,
             marginBottom: 14,
             marginTop: 18,
-            color: "var(--muted)",
           }}
         >
           I build at the intersection of{" "}
-          <strong style={{ color: "var(--primary)", fontWeight: 500 }}>
+          <strong style={{ color: "#5b21b6", fontWeight: 600 }}>
             full-stack engineering
           </strong>{" "}
           and{" "}
-          <strong style={{ color: "var(--highlight)", fontWeight: 500 }}>
+          <strong style={{ color: "#9d174d", fontWeight: 600 }}>
             AI integration
           </strong>
           . Not just features —{" "}
-          <strong style={{ color: "var(--text)"}}>
+          <strong style={{ color: "#0f0e11", fontWeight: 700 }}>
             experiences that make people pause
           </strong>
           .
@@ -227,8 +204,7 @@ export default function Home() {
             fontFamily: "var(--font-serif)",
             fontStyle: "italic",
             fontSize: 16,
-            // color: "rgba(240,171,202,0.7)",
-            color: "var(--dim)",
+            color: "rgba(15,14,17,0.45)",
             marginBottom: 36,
           }}
         >
@@ -250,7 +226,7 @@ export default function Home() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4,1fr)",
-            borderTop: "1px solid rgba(124,58,237,0.15)",
+            borderTop: "1px solid rgba(124,58,237,0.12)",
             paddingTop: 32,
           }}
         >
@@ -265,7 +241,7 @@ export default function Home() {
               style={{
                 textAlign: "center",
                 padding: "0 12px",
-                borderRight: i < 3 ? "1px solid rgba(124,58,237,0.12)" : "none",
+                borderRight: i < 3 ? "1px solid rgba(124,58,237,0.1)" : "none",
               }}
             >
               <div
@@ -273,19 +249,18 @@ export default function Home() {
                   fontFamily: "var(--font-serif)",
                   fontSize: 38,
                   fontWeight: 700,
-                  background: "linear-gradient(135deg,#a78bfa,#f0abca)",
+                  background: "linear-gradient(135deg,#7c3aed,#be185d)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}
               >
                 {s.v}
               </div>
-
               <div
                 style={{
                   fontSize: 9,
                   letterSpacing: 3,
-                  color: "rgba(232,228,240,0.28)",
+                  color: "rgba(15,14,17,0.3)",
                   marginTop: 4,
                   textTransform: "uppercase",
                 }}
@@ -296,13 +271,14 @@ export default function Home() {
           ))}
         </div>
       </section>
+
       <div
         style={{
           height: "420px",
           borderRadius: 20,
           background:
-            "radial-gradient(circle at 30% 30%, rgba(124,58,237,0.18), transparent 60%)",
-          opacity: 0.6,
+            "radial-gradient(circle at 30% 30%, rgba(124,58,237,0.1), transparent 60%)",
+          opacity: 0.5,
         }}
       />
     </div>

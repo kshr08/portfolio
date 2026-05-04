@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CardSwap, { Card } from "../components/CardSwap.jsx";
 import { PROJECTS } from "../data.js";
@@ -13,6 +13,7 @@ const fade = (delay = 0) => ({
   viewport: { once: true },
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
 });
+
 
 /* ─── Project info panel ─────────────────────────────────────────── */
 function ProjectInfo({ project: p, index }) {
@@ -287,6 +288,18 @@ export default function Projects() {
   const [activeIdx, setActiveIdx] = useState(0);
   const activeProject = PROJECTS[activeIdx];
 
+  const cardSwapRef = useRef(null);
+
+  const advance = () => cardSwapRef.current?.next();
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Enter" || e.key === "ArrowRight") advance();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <section
       style={{
@@ -334,21 +347,21 @@ export default function Projects() {
           upward, mirroring the inspiration image exactly.
       */}
       <div
+        onClick={advance}
         style={{
           display: "flex",
           alignItems: "flex-end",
           justifyContent: "center",
           height: 580,
+          cursor: "none",
         }}
       >
         <CardSwap
+          ref={cardSwapRef}
           width={700}
           height={490}
           cardDistance={20}
           verticalDistance={36}
-          delay={3200}
-          z-index={3}
-          pauseOnHover
           onFrontChange={(refIdx) => {
             setTimeout(() => setActiveIdx(refIdx), 480);
           }}

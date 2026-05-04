@@ -11,12 +11,6 @@ const LINKS = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const THEMES = ["dark", "contrast", "light"];
-  const [themeIndex, setThemeIndex] = useState(0);
-
-  const toggleTheme = () => {
-    setThemeIndex((prev) => (prev + 1) % 3);
-  };
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
@@ -24,10 +18,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  // Always light mode
   useEffect(() => {
-    const current = THEMES[themeIndex];
-    document.documentElement.setAttribute("data-theme", current);
-  }, [themeIndex]);
+    document.documentElement.removeAttribute("data-theme");
+  }, []);
 
   return (
     <nav
@@ -42,10 +36,10 @@ export default function Navbar() {
         justifyContent: "space-between",
         padding: "0 44px",
         height: 58,
-        background: scrolled ? "rgba(7,5,15,0.65)" : "rgba(7,5,15,0.35)",
-        boxShadow: scrolled ? "0 8px 30px rgba(0,0,0,0.4)" : "none",
+        background: scrolled ? "rgba(250,249,246,0.82)" : "rgba(250,249,246,0.5)",
+        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none",
         backdropFilter: "blur(20px)",
-        borderBottom: `1px solid ${scrolled ? "rgba(124,58,237,0.18)" : "transparent"}`,
+        borderBottom: `1px solid ${scrolled ? "rgba(124,58,237,0.12)" : "transparent"}`,
         transition: "background 0.3s, border-color 0.3s",
       }}
     >
@@ -56,18 +50,13 @@ export default function Navbar() {
           fontSize: 22,
           fontStyle: "italic",
           fontWeight: 300,
-          color: "var(--vpale)",
+          color: "#0f0e11",
           letterSpacing: 1,
         }}
       >
-        <span
-          style={{
-            display: "inline-block",
-            transform: "rotate(-1deg)",
-          }}
-        >
+        <span style={{ display: "inline-block", transform: "rotate(-1deg)" }}>
           shravani.
-        </span>{" "}
+        </span>
       </NavLink>
 
       <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
@@ -78,10 +67,10 @@ export default function Navbar() {
             style={({ isActive }) => ({
               background: "none",
               border: "none",
-              color: isActive ? "var(--vpale)" : "var(--muted)",
+              color: isActive ? "#0f0e11" : "rgba(15,14,17,0.5)",
               fontFamily: "var(--font-sans)",
               fontSize: 12,
-              fontWeight: 500,
+              fontWeight: isActive ? 700 : 500,
               letterSpacing: "0.5px",
               padding: "6px 13px",
               borderRadius: 6,
@@ -94,21 +83,6 @@ export default function Navbar() {
         ))}
       </div>
 
-      <button
-        onClick={toggleTheme}
-        style={{
-          fontSize: 11,
-          padding: "6px 12px",
-          borderRadius: 20,
-          border: "1px solid var(--border)",
-          background: "var(--card)",
-          color: "var(--text)",
-          cursor: "none",
-          transition: "all 0.3s ease",
-        }}
-      >
-        {THEMES[themeIndex]}
-      </button>
       <a
         href="/resume.pdf"
         target="_blank"
@@ -118,17 +92,17 @@ export default function Navbar() {
           fontWeight: 700,
           padding: "7px 16px",
           borderRadius: 7,
-          border: "1px solid rgba(124,58,237,0.5)",
-          background: "rgba(124,58,237,0.1)",
-          color: "var(--vsoft)",
+          border: "1px solid rgba(124,58,237,0.4)",
+          background: "rgba(124,58,237,0.07)",
+          color: "#5b21b6",
           letterSpacing: "0.3px",
           transition: "background 0.2s",
         }}
         onMouseEnter={(e) =>
-          (e.currentTarget.style.background = "rgba(124,58,237,0.22)")
+          (e.currentTarget.style.background = "rgba(124,58,237,0.14)")
         }
         onMouseLeave={(e) =>
-          (e.currentTarget.style.background = "rgba(124,58,237,0.1)")
+          (e.currentTarget.style.background = "rgba(124,58,237,0.07)")
         }
       >
         Resume ↗

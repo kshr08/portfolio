@@ -21,8 +21,8 @@ export default function Skills() {
         <div
           style={{
             display: "inline-flex",
-            background: "rgba(124,58,237,0.08)",
-            border: "1px solid rgba(124,58,237,0.2)",
+            background: "rgba(124,58,237,0.06)",
+            border: "1px solid rgba(124,58,237,0.15)",
             borderRadius: 10,
             padding: 3,
             marginBottom: 44,
@@ -49,7 +49,7 @@ export default function Skills() {
                   tab === key
                     ? "linear-gradient(135deg,#7c3aed,#a78bfa)"
                     : "transparent",
-                color: tab === key ? "#fff" : "rgba(232,228,240,0.35)",
+                color: tab === key ? "#fff" : "rgba(15,14,17,0.4)",
               }}
             >
               {label}
@@ -70,7 +70,8 @@ export default function Skills() {
                     fontStyle: "italic",
                     color,
                     marginBottom: 12,
-                    opacity: 0.75,
+                    opacity: 0.8,
+                    fontWeight: 600,
                   }}
                 >
                   {cat}
@@ -85,7 +86,7 @@ export default function Skills() {
                         fontWeight: 600,
                         padding: "7px 16px",
                         borderRadius: 7,
-                        border: `1px solid ${color}2e`,
+                        border: `1px solid ${color}33`,
                         background: color + "0e",
                         color,
                         boxShadow: "0 0 0 transparent",
@@ -93,10 +94,9 @@ export default function Skills() {
                         cursor: "none",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform =
-                          "translateY(-4px) scale(1.05)";
-                        e.currentTarget.style.boxShadow = `0 8px 25px ${color}33`;
-                        e.currentTarget.style.background = color + "22";
+                        e.currentTarget.style.transform = "translateY(-4px) scale(1.05)";
+                        e.currentTarget.style.boxShadow = `0 8px 25px ${color}25`;
+                        e.currentTarget.style.background = color + "1a";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = "none";
@@ -127,22 +127,21 @@ export default function Skills() {
                 style={{
                   padding: "22px 18px",
                   borderRadius: 12,
-                  border: `1px solid ${s.color}25`,
-                  background: "rgba(124,58,237,0.05)",
+                  border: `1px solid ${s.color}22`,
+                  background: "rgba(124,58,237,0.03)",
                   textAlign: "center",
-                  transition:
-                    "transform 0.22s, box-shadow 0.22s, background 0.22s",
+                  transition: "transform 0.22s, box-shadow 0.22s, background 0.22s",
                   cursor: "none",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-5px)";
-                  e.currentTarget.style.boxShadow = `0 8px 28px ${s.color}22`;
-                  e.currentTarget.style.background = s.color + "0f";
+                  e.currentTarget.style.boxShadow = `0 8px 28px ${s.color}18`;
+                  e.currentTarget.style.background = s.color + "0c";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "rotate(0deg)";
                   e.currentTarget.style.boxShadow = "none";
-                  e.currentTarget.style.background = "rgba(124,58,237,0.05)";
+                  e.currentTarget.style.background = "rgba(124,58,237,0.03)";
                 }}
               >
                 <div style={{ fontSize: 26, marginBottom: 10 }}>{s.icon}</div>

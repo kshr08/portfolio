@@ -4,6 +4,7 @@ import React, {
     forwardRef,
     isValidElement,
     useEffect,
+    useImperativeHandle,
     useMemo,
     useRef,
 } from 'react';
@@ -57,16 +58,15 @@ const placeNow = (el, slot) =>
     });
 
 /* ─── CardSwap ───────────────────────────────────────────────────── */
-const CardSwap = ({
+const CardSwap = forwardRef(({
     width = 520,
     height = 380,
     cardDistance = 22,    // horizontal px offset per slot
     verticalDistance = 38, // vertical px offset (upward) per slot
-    delay = 3200,
     pauseOnHover = true,
     onFrontChange,
     children,
-}) => {
+}, ref) => {
     const childArr = useMemo(() => Children.toArray(children), [children]);
     const refs = useMemo(
         () => childArr.map(() => React.createRef()),
@@ -173,29 +173,12 @@ const CardSwap = ({
         };
 
         runSwap.current = swap;
-        intervalRef.current = window.setInterval(swap, delay);
 
-        const node = container.current;
-        if (pauseOnHover) {
-            const pause = () => {
-                tlRef.current?.pause();
-                clearInterval(intervalRef.current);
-            };
-            const resume = () => {
-                tlRef.current?.play();
-                intervalRef.current = window.setInterval(swap, delay);
-            };
-            node.addEventListener('mouseenter', pause);
-            node.addEventListener('mouseleave', resume);
-            return () => {
-                node.removeEventListener('mouseenter', pause);
-                node.removeEventListener('mouseleave', resume);
-                clearInterval(intervalRef.current);
-            };
-        }
-        return () => clearInterval(intervalRef.current);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cardDistance, verticalDistance, delay, pauseOnHover]);
+    }, [cardDistance, verticalDistance]);
+
+    useImperativeHandle(ref, () => ({
+        next: () => runSwap.current?.(),
+    }));
 
     const rendered = childArr.map((child, i) =>
         isValidElement(child)
@@ -209,45 +192,47 @@ const CardSwap = ({
                 },
                 onClick: (e) => {
                     child.props.onClick?.(e);
-
-                    // Bring this card to front
-                    if (order.current[0] === i) return;
-                    const pos = order.current.indexOf(i);
-                    if (pos === -1) return;
-
-                    clearInterval(intervalRef.current);
-                    tlRef.current?.kill();
-                    animating.current = false;
-
-                    // Rotate order so clicked card is front
-                    order.current = [
-                        ...order.current.slice(pos),
-                        ...order.current.slice(0, pos),
-                    ];
-
-                    // Animate everyone into their new slots
-                    const total = refs.length;
-                    refs.forEach((r, ri) => {
-                        const slotIdx = order.current.indexOf(ri);
-                        const slot = makeSlot(slotIdx, cardDistance, verticalDistance, total);
-                        gsap.to(r.current, {
-                            x: slot.x,
-                            y: slot.y,
-                            z: slot.z,
-                            scale: slot.scale,
-                            rotation: 0,
-                            opacity: 1,
-                            zIndex: slot.zIndex,
-                            duration: 0.5,
-                            ease: 'power3.out',
-                        });
-                    });
-
-                    onFrontChangeRef.current?.(order.current[0]);
-
-                    // Restart auto-swap
-                    intervalRef.current = window.setInterval(runSwap.current, delay);
+                    runSwap.current?.();
                 },
+
+                //                 // Bring this card to front
+                //                 if (order.current[0] === i) return;
+                //                 const pos = order.current.indexOf(i);
+                //                 if (pos === -1) return;
+
+                //                 clearInterval(intervalRef.current);
+                //                 tlRef.current?.kill();
+                //                 animating.current = false;
+
+                //                 // Rotate order so clicked card is front
+                //                 order.current = [
+                //                     ...order.current.slice(pos),
+                //                     ...order.current.slice(0, pos),
+                //                 ];
+
+                //                 // Animate everyone into their new slots
+                //                 const total = refs.length;
+                //                 refs.forEach((r, ri) => {
+                //                     const slotIdx = order.current.indexOf(ri);
+                //                     const slot = makeSlot(slotIdx, cardDistance, verticalDistance, total);
+                //                     gsap.to(r.current, {
+                //                         x: slot.x,
+                //                         y: slot.y,
+                //                         z: slot.z,
+                //                         scale: slot.scale,
+                //                         rotation: 0,
+                //                         opacity: 1,
+                //                         zIndex: slot.zIndex,
+                //                         duration: 0.5,
+                //                         ease: 'power3.out',
+                //                     });
+                //                 });
+
+                //                 onFrontChangeRef.current?.(order.current[0]);
+
+                //                 // Restart auto-swap
+                //                 intervalRef.current = window.setInterval(runSwap.current, delay);
+                //             },
             })
             : child
     );
@@ -278,6 +263,7 @@ const CardSwap = ({
             </div>
         </div>
     );
-};
+});
 
+CardSwap.displayName = 'CardSwap';
 export default CardSwap;

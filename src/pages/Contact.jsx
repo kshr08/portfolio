@@ -6,25 +6,25 @@ const SOCIALS = [
   {
     label: "Email",
     val: "spkhindre@gmail.com",
-    color: "#f4a7b9",
+    color: "#9d174d",
     href: "mailto:spkhindre@gmail.com",
   },
   {
     label: "LinkedIn",
     val: "linkedin.com/in/shravani-khindre",
-    color: "#c4b5fd",
+    color: "#5b21b6",
     href: "https://www.linkedin.com/in/shravani-khindre-0b0044282/",
   },
   {
     label: "GitHub",
     val: "github.com/kshr08",
-    color: "#a7f3d0",
+    color: "#065f46",
     href: "https://github.com/kshr08",
   },
   {
     label: "Location",
     val: "Maharashtra, India",
-    color: "#fcd5b5",
+    color: "#92400e",
     href: null,
   },
 ];
@@ -38,7 +38,7 @@ const fade = (delay = 0) => ({
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [status, setStatus] = useState("idle");
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -55,11 +55,11 @@ export default function Contact() {
   };
 
   const inputStyle = {
-    background: "#0d0d0f",
-    border: "1px solid #2a2a35",
+    background: "#ffffff",
+    border: "1px solid rgba(15,14,17,0.15)",
     borderRadius: 9,
     padding: "12px 16px",
-    color: "#fef9ef",
+    color: "#0f0e11",
     fontSize: 14,
     outline: "none",
     width: "100%",
@@ -74,7 +74,7 @@ export default function Contact() {
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: 12,
-          color: "#6b6b7a",
+          color: "rgba(15,14,17,0.4)",
           marginBottom: 8,
         }}
       >
@@ -88,7 +88,7 @@ export default function Contact() {
           fontWeight: 800,
           fontSize: "clamp(38px, 6vw, 70px)",
           letterSpacing: -2.5,
-          color: "#fef9ef",
+          color: "#0f0e11",
           marginBottom: 14,
           lineHeight: 1,
         }}
@@ -96,7 +96,7 @@ export default function Contact() {
         Let's{" "}
         <span
           style={{
-            background: "linear-gradient(135deg, #fcd5b5, #f4a7b9)",
+            background: "linear-gradient(135deg, #7c3aed, #be185d)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -109,7 +109,7 @@ export default function Contact() {
         {...fade(0.14)}
         style={{
           fontSize: 15,
-          color: "#6b6b7a",
+          color: "rgba(15,14,17,0.5)",
           maxWidth: 480,
           lineHeight: 1.7,
           marginBottom: 56,
@@ -136,17 +136,15 @@ export default function Contact() {
             <a
               key={s.label}
               href={s.href || undefined}
-              target={
-                s.href && !s.href.startsWith("mailto") ? "_blank" : undefined
-              }
+              target={s.href && !s.href.startsWith("mailto") ? "_blank" : undefined}
               rel="noreferrer"
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: 16,
                 padding: "16px 20px",
-                background: "#141416",
-                border: "1px solid #2a2a35",
+                background: "#ffffff",
+                border: "1px solid rgba(15,14,17,0.1)",
                 borderRadius: 12,
                 transition: "border-color 0.2s, background 0.2s",
                 cursor: s.href ? "pointer" : "default",
@@ -154,25 +152,23 @@ export default function Contact() {
               }}
               onMouseEnter={(e) => {
                 if (s.href) {
-                  e.currentTarget.style.borderColor = s.color + "55";
-                  e.currentTarget.style.background = s.color + "0a";
+                  e.currentTarget.style.borderColor = s.color + "44";
+                  e.currentTarget.style.background = s.color + "06";
                 }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#2a2a35";
-                e.currentTarget.style.background = "#141416";
+                e.currentTarget.style.borderColor = "rgba(15,14,17,0.1)";
+                e.currentTarget.style.background = "#ffffff";
               }}
             >
-              <span style={{ fontSize: 11, color: "#6b6b7a", minWidth: 60 }}>
+              <span style={{ fontSize: 11, color: "rgba(15,14,17,0.4)", minWidth: 60 }}>
                 {s.label}
               </span>
-              <span style={{ fontSize: 13, color: s.color, fontWeight: 500 }}>
+              <span style={{ fontSize: 13, color: s.color, fontWeight: 600 }}>
                 {s.val}
               </span>
               {s.href && (
-                <span
-                  style={{ marginLeft: "auto", fontSize: 11, color: "#6b6b7a" }}
-                >
+                <span style={{ marginLeft: "auto", fontSize: 11, color: "rgba(15,14,17,0.3)" }}>
                   ↗
                 </span>
               )}
@@ -184,12 +180,12 @@ export default function Contact() {
             style={{
               marginTop: 8,
               padding: "16px 20px",
-              background: "#f4a7b908",
-              border: "1px solid #f4a7b922",
+              background: "rgba(124,58,237,0.03)",
+              border: "1px solid rgba(124,58,237,0.12)",
               borderRadius: 12,
             }}
           >
-            <p style={{ fontSize: 12, color: "#6b6b7a", lineHeight: 1.6 }}>
+            <p style={{ fontSize: 12, color: "rgba(15,14,17,0.5)", lineHeight: 1.6 }}>
               📬 Messages via this form are sent directly to my Gmail via
               Nodemailer. I'll reply thread so we can continue the conversation
               over email.
@@ -201,13 +197,14 @@ export default function Contact() {
         <motion.div
           {...fade(0.22)}
           style={{
-            background: "#141416",
-            border: "1px solid #2a2a35",
+            background: "#ffffff",
+            border: "1px solid rgba(15,14,17,0.1)",
             borderRadius: 18,
             padding: 30,
             display: "flex",
             flexDirection: "column",
             gap: 16,
+            boxShadow: "0 4px 24px rgba(0,0,0,0.05)",
           }}
         >
           <input
@@ -216,8 +213,8 @@ export default function Contact() {
             value={form.name}
             onChange={set("name")}
             style={inputStyle}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "#f4a7b966")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "#2a2a35")}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#7c3aed88")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(15,14,17,0.15)")}
           />
           <input
             type="email"
@@ -225,8 +222,8 @@ export default function Contact() {
             value={form.email}
             onChange={set("email")}
             style={inputStyle}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "#c4b5fd66")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "#2a2a35")}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#5b21b688")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(15,14,17,0.15)")}
           />
           <textarea
             placeholder="Your message..."
@@ -234,8 +231,8 @@ export default function Contact() {
             value={form.message}
             onChange={set("message")}
             style={{ ...inputStyle, resize: "none" }}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "#a7f3d066")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "#2a2a35")}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#9d174d88")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(15,14,17,0.15)")}
           />
 
           <motion.button
@@ -246,11 +243,11 @@ export default function Contact() {
             style={{
               background:
                 status === "sent"
-                  ? "linear-gradient(135deg, #a7f3d0, #6ee7b7)"
+                  ? "linear-gradient(135deg, #065f46, #34d399)"
                   : status === "error"
-                    ? "linear-gradient(135deg, #f87171, #fca5a5)"
-                    : "linear-gradient(135deg, #f4a7b9, #c4b5fd)",
-              color: "#0d0d0f",
+                    ? "linear-gradient(135deg, #991b1b, #f87171)"
+                    : "linear-gradient(135deg, #7c3aed, #be185d)",
+              color: "#fff",
               padding: "13px",
               borderRadius: 9,
               border: "none",
@@ -270,7 +267,7 @@ export default function Contact() {
           </motion.button>
 
           {status === "sent" && (
-            <p style={{ fontSize: 12, color: "#a7f3d0", textAlign: "center" }}>
+            <p style={{ fontSize: 12, color: "#065f46", textAlign: "center" }}>
               I'll reply to {form.email || "your email"} shortly!
             </p>
           )}
@@ -283,7 +280,7 @@ export default function Contact() {
         style={{
           marginTop: 100,
           paddingTop: 32,
-          borderTop: "1px solid #2a2a35",
+          borderTop: "1px solid rgba(15,14,17,0.1)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -294,7 +291,7 @@ export default function Contact() {
             fontFamily: "var(--font-display)",
             fontSize: 30,
             fontWeight: 800,
-            background: "linear-gradient(135deg, #f4a7b9, #c4b5fd)",
+            background: "linear-gradient(135deg, #7c3aed, #be185d)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             letterSpacing: -1,
@@ -302,13 +299,7 @@ export default function Contact() {
         >
           SHRAVANI
         </span>
-        <span
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 11,
-            color: "#6b6b7a",
-          }}
-        >
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(15,14,17,0.35)" }}>
           Designed & built with React · 2026
         </span>
       </motion.footer>

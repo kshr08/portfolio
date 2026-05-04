@@ -6,28 +6,28 @@ const TIMELINE = [
     title: "C-DAC Interview Prep",
     place: "Self-directed",
     desc: "400+ questions — Java, React, Node.js, DSA, System Design, Core CS.",
-    color: "#a78bfa",
+    color: "#6d28d9",
   },
   {
     year: "2025–26",
     title: "Full Stack Intern",
     place: "Paarsh Infotech, Nashik",
     desc: "Java-based CRM system. Spring Boot, REST APIs, MySQL.",
-    color: "#f0abca",
+    color: "#9d174d",
   },
   {
     year: "2025",
     title: "CityPulse AI — Finalist",
     place: "Competition",
     desc: "Led Edge AI phase. Python + OpenCV + Ollama gemma3:4b real-time pipeline.",
-    color: "#c4b5fd",
+    color: "#7c3aed",
   },
   {
     year: "2022",
     title: "B.Tech CSE Begins",
     place: "MIT CSN",
     desc: "Where it all started.",
-    color: "rgba(232,228,240,0.25)",
+    color: "rgba(15,14,17,0.3)",
   },
 ];
 
@@ -64,34 +64,15 @@ export default function About() {
       >
         {/* bio */}
         <ScrollReveal delay={0.12}>
-          <p
-            style={{
-              fontSize: 15,
-              color: "rgba(232,228,240,0.5)",
-              lineHeight: 1.85,
-              marginBottom: 16,
-            }}
-          >
+          <p style={{ fontSize: 15, color: "rgba(15,14,17,0.6)", lineHeight: 1.85, marginBottom: 16 }}>
             Final-year B.Tech CSE at{" "}
-            <span style={{ color: "var(--vsoft)" }}>
-              MIT Chhatrapati Sambhajinagar
-            </span>
-            , graduating 2026 with a CGPA of 8.49. Currently interning as a Full
-            Stack Developer at{" "}
-            <span style={{ color: "var(--blush)" }}>Paarsh Infotech</span>,
-            building a Java-based CRM system.
+            <span style={{ color: "#5b21b6", fontWeight: 600 }}>MIT Chhatrapati Sambhajinagar</span>
+            , graduating 2026 with a CGPA of 8.49. Currently interning as a Full Stack Developer at{" "}
+            <span style={{ color: "#9d174d", fontWeight: 600 }}>Paarsh Infotech</span>, building a Java-based CRM system.
           </p>
-          <p
-            style={{
-              fontSize: 15,
-              color: "rgba(232,228,240,0.5)",
-              lineHeight: 1.85,
-              marginBottom: 32,
-            }}
-          >
-            Preparing for <span style={{ color: "var(--vpale)" }}>C-DAC</span>{" "}
-            and exploring SDE roles across Pune, Bengaluru, Nagpur, and
-            Coimbatore.
+          <p style={{ fontSize: 15, color: "rgba(15,14,17,0.6)", lineHeight: 1.85, marginBottom: 32 }}>
+            Preparing for <span style={{ color: "#0f0e11", fontWeight: 600 }}>C-DAC</span>{" "}
+            and exploring SDE roles across Pune, Bengaluru, Nagpur, and Coimbatore.
           </p>
 
           {/* timeline */}
@@ -103,7 +84,7 @@ export default function About() {
                 top: 0,
                 bottom: 0,
                 width: 1,
-                background: "rgba(124,58,237,0.18)",
+                background: "rgba(124,58,237,0.15)",
               }}
             />
             {TIMELINE.map((t) => (
@@ -114,7 +95,7 @@ export default function About() {
                   gap: 22,
                   alignItems: "flex-start",
                   padding: "18px 0",
-                  borderBottom: "1px solid rgba(124,58,237,0.07)",
+                  borderBottom: "1px solid rgba(124,58,237,0.06)",
                 }}
               >
                 <span
@@ -136,7 +117,7 @@ export default function About() {
                     height: 8,
                     borderRadius: "50%",
                     background: t.color,
-                    boxShadow: `0 0 10px ${t.color}`,
+                    boxShadow: `0 0 8px ${t.color}`,
                     marginTop: 5,
                     flexShrink: 0,
                   }}
@@ -147,22 +128,14 @@ export default function About() {
                       fontFamily: "var(--font-serif)",
                       fontSize: 16,
                       fontWeight: 700,
-                      color: "var(--vpale)",
+                      color: "#0f0e11",
                       marginBottom: 3,
                     }}
                   >
                     {t.title}
                   </h4>
-                  <p style={{ fontSize: 11, color: t.color, marginBottom: 4 }}>
-                    {t.place}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: 12,
-                      color: "rgba(232,228,240,0.38)",
-                      lineHeight: 1.55,
-                    }}
-                  >
+                  <p style={{ fontSize: 11, color: t.color, marginBottom: 4 }}>{t.place}</p>
+                  <p style={{ fontSize: 12, color: "rgba(15,14,17,0.45)", lineHeight: 1.55 }}>
                     {t.desc}
                   </p>
                 </div>
@@ -182,9 +155,9 @@ export default function About() {
                   gap: 14,
                   alignItems: "center",
                   padding: "12px 16px",
-                  background: "rgba(124,58,237,0.07)",
-                  border: "1px solid rgba(124,58,237,0.15)",
-                  borderLeft: "2px solid var(--violet)",
+                  background: "rgba(124,58,237,0.04)",
+                  border: "1px solid rgba(124,58,237,0.12)",
+                  borderLeft: "2px solid #7c3aed",
                   borderRadius: 10,
                 }}
               >
@@ -193,19 +166,13 @@ export default function About() {
                     fontSize: 10,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(167,139,250,0.4)",
+                    color: "rgba(109,40,217,0.45)",
                     minWidth: 70,
                   }}
                 >
                   {row.label}
                 </span>
-                <span
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "var(--vpale)",
-                  }}
-                >
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#0f0e11" }}>
                   {row.val}
                 </span>
               </div>
@@ -216,8 +183,8 @@ export default function About() {
               style={{
                 marginTop: 10,
                 padding: "18px 20px",
-                background: "rgba(240,171,202,0.04)",
-                border: "1px solid rgba(240,171,202,0.14)",
+                background: "rgba(157,23,77,0.03)",
+                border: "1px solid rgba(157,23,77,0.12)",
                 borderRadius: 12,
               }}
             >
@@ -226,7 +193,7 @@ export default function About() {
                   fontFamily: "var(--font-serif)",
                   fontStyle: "italic",
                   fontSize: 16,
-                  color: "rgba(240,171,202,0.65)",
+                  color: "rgba(15,14,17,0.55)",
                   lineHeight: 1.65,
                 }}
               >
