@@ -18,9 +18,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // Always light mode
+  // Always light mode — explicitly set background so no dark flash
   useEffect(() => {
     document.documentElement.removeAttribute("data-theme");
+    document.documentElement.style.background = "#faf9f6";
+    document.body.style.background = "#faf9f6";
   }, []);
 
   return (

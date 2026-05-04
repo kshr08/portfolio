@@ -1,12 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CardSwap, { Card } from "../components/CardSwap.jsx";
 import { PROJECTS } from "../data.js";
 
-/* ─── tiny icon map ─────────────────────────────────────────────── */
 const ICON = ["</>", "≋", "◈", "⬡"];
 
-/* ─── Fade-in helper ─────────────────────────────────────────────── */
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -14,9 +12,7 @@ const fade = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
-
-/* ─── Project info panel ─────────────────────────────────────────── */
-function ProjectInfo({ project: p, index }) {
+function ProjectInfo({ project: p }) {
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -35,7 +31,7 @@ function ProjectInfo({ project: p, index }) {
               fontSize: 11,
               fontStyle: "italic",
               color: p.color,
-              opacity: 0.55,
+              opacity: 0.8,
               marginBottom: 10,
               letterSpacing: "0.4px",
             }}
@@ -49,7 +45,7 @@ function ProjectInfo({ project: p, index }) {
               fontWeight: 700,
               letterSpacing: -2,
               lineHeight: 0.93,
-              color: "var(--mist)",
+              color: "#0f0e11",
               marginBottom: 10,
             }}
           >
@@ -61,7 +57,7 @@ function ProjectInfo({ project: p, index }) {
               fontStyle: "italic",
               fontSize: 14,
               color: p.color,
-              opacity: 0.75,
+              opacity: 0.85,
             }}
           >
             {p.tagline}
@@ -72,7 +68,7 @@ function ProjectInfo({ project: p, index }) {
         <p
           style={{
             fontSize: 14,
-            color: "rgba(232,228,240,0.5)",
+            color: "rgba(15,14,17,0.6)",
             lineHeight: 1.85,
             maxWidth: 420,
           }}
@@ -87,7 +83,7 @@ function ProjectInfo({ project: p, index }) {
               fontSize: 9,
               letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: "rgba(232,228,240,0.2)",
+              color: "rgba(15,14,17,0.35)",
               marginBottom: 10,
             }}
           >
@@ -102,8 +98,8 @@ function ProjectInfo({ project: p, index }) {
                   fontWeight: 700,
                   padding: "5px 13px",
                   borderRadius: 6,
-                  border: `1px solid ${p.color}30`,
-                  background: p.color + "10",
+                  border: `1px solid ${p.color}44`,
+                  background: p.color + "12",
                   color: p.color,
                   letterSpacing: "0.2px",
                 }}
@@ -128,7 +124,7 @@ function ProjectInfo({ project: p, index }) {
               fontWeight: 700,
               padding: "11px 24px",
               borderRadius: 8,
-              border: `1px solid ${p.color}50`,
+              border: `1px solid ${p.color}55`,
               background: p.color + "16",
               color: p.color,
               transition: "background 0.2s, transform 0.18s",
@@ -158,21 +154,21 @@ function ProjectInfo({ project: p, index }) {
               fontWeight: 700,
               padding: "11px 24px",
               borderRadius: 8,
-              border: "1px solid rgba(255,255,255,0.09)",
+              border: "1px solid rgba(15,14,17,0.15)",
               background: "transparent",
-              color: "rgba(232,228,240,0.4)",
+              color: "rgba(15,14,17,0.5)",
               transition: "border-color 0.2s, color 0.2s, transform 0.18s",
               cursor: "none",
               textDecoration: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = "var(--mist)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)";
+              e.currentTarget.style.color = "#0f0e11";
+              e.currentTarget.style.borderColor = "rgba(15,14,17,0.35)";
               e.currentTarget.style.transform = "translateY(-2px)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = "rgba(232,228,240,0.4)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)";
+              e.currentTarget.style.color = "rgba(15,14,17,0.5)";
+              e.currentTarget.style.borderColor = "rgba(15,14,17,0.15)";
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
@@ -189,8 +185,7 @@ function ProjectInfo({ project: p, index }) {
                 width: proj.id === p.id ? 22 : 7,
                 height: 7,
                 borderRadius: 4,
-                background:
-                  proj.id === p.id ? p.color : "rgba(232,228,240,0.14)",
+                background: proj.id === p.id ? p.color : "rgba(15,14,17,0.12)",
                 transition: "all 0.36s ease",
               }}
             />
@@ -201,14 +196,13 @@ function ProjectInfo({ project: p, index }) {
   );
 }
 
-/* ─── Browser-window-style card header ──────────────────────────── */
 function CardHeader({ project: p, index }) {
   return (
     <div
       style={{
         height: 38,
-        background: "rgba(18,14,30,0.95)",
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
+        background: "rgba(245,243,240,0.97)",
+        borderBottom: "1px solid rgba(15,14,17,0.08)",
         display: "flex",
         alignItems: "center",
         padding: "0 14px",
@@ -216,7 +210,6 @@ function CardHeader({ project: p, index }) {
         flexShrink: 0,
       }}
     >
-      {/* Dot cluster */}
       <div style={{ display: "flex", gap: 5 }}>
         {["#ff5f57", "#ffbd2e", "#28c840"].map((c) => (
           <div
@@ -226,23 +219,14 @@ function CardHeader({ project: p, index }) {
               height: 9,
               borderRadius: "50%",
               background: c,
-              opacity: 0.55,
+              opacity: 0.7,
             }}
           />
         ))}
       </div>
 
-      {/* Vertical divider */}
-      <div
-        style={{
-          width: 1,
-          height: 16,
-          background: "rgba(255,255,255,0.08)",
-          marginLeft: 2,
-        }}
-      />
+      <div style={{ width: 1, height: 16, background: "rgba(15,14,17,0.1)", marginLeft: 2 }} />
 
-      {/* Icon + project name */}
       <span
         style={{
           fontSize: 11,
@@ -250,7 +234,6 @@ function CardHeader({ project: p, index }) {
           fontFamily: "var(--font-sans, monospace)",
           fontWeight: 700,
           letterSpacing: "0.3px",
-          opacity: 0.85,
         }}
       >
         {ICON[index % ICON.length]}
@@ -258,7 +241,7 @@ function CardHeader({ project: p, index }) {
       <span
         style={{
           fontSize: 12,
-          color: "rgba(232,228,240,0.55)",
+          color: "rgba(15,14,17,0.55)",
           fontFamily: "var(--font-sans, monospace)",
           letterSpacing: "0.2px",
         }}
@@ -266,7 +249,6 @@ function CardHeader({ project: p, index }) {
         {p.name}
       </span>
 
-      {/* Active indicator */}
       <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 5 }}>
         <div
           style={{
@@ -283,22 +265,9 @@ function CardHeader({ project: p, index }) {
   );
 }
 
-/* ─── Main page ──────────────────────────────────────────────────── */
 export default function Projects() {
   const [activeIdx, setActiveIdx] = useState(0);
   const activeProject = PROJECTS[activeIdx];
-
-  const cardSwapRef = useRef(null);
-
-  const advance = () => cardSwapRef.current?.next();
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Enter" || e.key === "ArrowRight") advance();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
 
   return (
     <section
@@ -311,7 +280,7 @@ export default function Projects() {
         alignItems: "center",
       }}
     >
-      {/* ── LEFT: info panel ───────────────────────────────────────── */}
+      {/* LEFT: info panel */}
       <div style={{ position: "relative", zIndex: 10 }}>
         <motion.div {...fade()} style={{ marginBottom: 40 }}>
           <p
@@ -320,7 +289,7 @@ export default function Projects() {
               fontSize: 10,
               letterSpacing: "3.5px",
               textTransform: "uppercase",
-              color: "rgba(167,139,250,0.45)",
+              color: "rgba(109,40,217,0.55)",
               marginBottom: 4,
             }}
           >
@@ -329,7 +298,7 @@ export default function Projects() {
           <p
             style={{
               fontSize: 12,
-              color: "rgba(232,228,240,0.22)",
+              color: "rgba(15,14,17,0.4)",
               fontStyle: "italic",
               fontFamily: "var(--font-serif)",
             }}
@@ -341,51 +310,42 @@ export default function Projects() {
         <ProjectInfo project={activeProject} index={activeIdx} />
       </div>
 
-      {/* ── RIGHT: card stack ──────────────────────────────────────── */}
-      {/*
-          We align the stack to the bottom of the column so the cards fan
-          upward, mirroring the inspiration image exactly.
-      */}
+      {/* RIGHT: card stack */}
       <div
-        onClick={advance}
         style={{
           display: "flex",
           alignItems: "flex-end",
           justifyContent: "center",
-          height: 580,
-          cursor: "none",
+          height: 560,
         }}
       >
         <CardSwap
-          ref={cardSwapRef}
-          width={700}
-          height={490}
+          width={500}
+          height={340}
           cardDistance={20}
           verticalDistance={36}
-          onFrontChange={(refIdx) => {
-            setTimeout(() => setActiveIdx(refIdx), 480);
-          }}
+          delay={3200}
+          pauseOnHover
+          onFrontChange={(refIdx) => setActiveIdx(refIdx)}
         >
           {PROJECTS.map((p, i) => (
             <Card
               key={p.id}
               style={{
-                border: `1px solid ${p.color}30`,
-                background: "rgba(10,8,20,0.97)",
+                border: `1px solid ${p.color}25`,
+                background: "rgba(250,249,246,0.98)",
                 boxShadow: `
-                  0 24px 64px rgba(0,0,0,0.6),
-                  0 0 0 1px ${p.color}15,
-                  inset 0 1px 0 rgba(255,255,255,0.04)
+                  0 24px 64px rgba(0,0,0,0.1),
+                  0 0 0 1px ${p.color}10,
+                  inset 0 1px 0 rgba(255,255,255,0.8)
                 `,
                 cursor: "none",
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              {/* Browser chrome header */}
               <CardHeader project={p} index={i} />
 
-              {/* Project screenshot */}
               <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
                 <img
                   src={p.img}
@@ -395,15 +355,14 @@ export default function Projects() {
                     height: "100%",
                     objectFit: "cover",
                     display: "block",
-                    filter: "saturate(0.6) brightness(0.65)",
+                    filter: "saturate(0.75) brightness(0.9)",
                   }}
                 />
-                {/* Subtle color overlay */}
                 <div
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background: `linear-gradient(135deg, ${p.color}12 0%, transparent 60%)`,
+                    background: `linear-gradient(135deg, ${p.color}0e 0%, transparent 60%)`,
                     pointerEvents: "none",
                   }}
                 />
